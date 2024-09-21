@@ -5,9 +5,9 @@ import Image from "next/image";
 import logoImage from "../../public/logo.svg";
 
 import styles from "@/app/styles/home.module.scss";
-import Task from "../components/task";
+import Task from "@/app/components/task";
 import { useEffect, useReducer, useState } from "react";
-import NewTask from "../components/newTask";
+import NewTask from "@/app/components/newTask";
 import { v4 as uuidv4 } from "uuid";
 
 export type Task = { id: string; name: string; completed: boolean };
