@@ -75,6 +75,8 @@ export default function Home() {
     []
   );
   const date = new Date();
+  const storedTasks = localStorage.getItem("tasks");
+  const storedCompletedTasks = localStorage.getItem("completedTasks");
 
   const formattedDate = date.toLocaleDateString("pt-BR", {
     weekday: "long",
@@ -84,9 +86,26 @@ export default function Home() {
   });
 
   useEffect(() => {
-    if (tasks) {
+    if (storedTasks) {
+      dispatch({
+        type: "setTasks",
+        task: JSON.parse(storedTasks!),
+      });
+    }
+
+    if (storedCompletedTasks) {
+      completedTaskDispatch({
+        type: "setTasks",
+        task: JSON.parse(storedCompletedTasks!),
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (tasks.length > 0) {
       const completedTask = tasks.find((task) => task.completed === true);
       const tasksNotCompleted = tasks.filter((task) => task.completed !== true);
+      localStorage.setItem("tasks", JSON.stringify(tasksNotCompleted));
 
       if (completedTask) {
         completedTaskDispatch({
@@ -105,11 +124,14 @@ export default function Home() {
       const uncheckedTask = completedTasks.find(
         (task) => task.completed === false
       );
-      const filteredCompletedTasks = tasks.filter(
+      const filteredCompletedTasks = completedTasks.filter(
         (task) => task.completed === true
       );
 
-      console.log(uncheckedTask);
+      localStorage.setItem(
+        "completedTasks",
+        JSON.stringify(filteredCompletedTasks)
+      );
 
       if (uncheckedTask) {
         dispatch({
