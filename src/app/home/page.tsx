@@ -69,14 +69,14 @@ export default function Home() {
   const [addNewTaskModalIsOpen, setAddNewTaskModalIsOpen] =
     useState<boolean>(false);
 
+  //Pensando nos proximos passo do projeto, a migração de useReducer para Zustand ou Context API para o gerenciamento global do estado de tarefas (tasks) seria uma escolha mais escalável e eficiente. Embora o useReducer funcione bem para gerenciar o estado local, ele pode se tornar um problema, visto que, à medida que o projeto cresce e múltiplos componentes precisam acessar o estado, pode ocorrer o "prop drilling", deixando o código mais complexo e mais dificil de dar manutenção.
+
   const [tasks, dispatch] = useReducer(taskReducer, []);
   const [completedTasks, completedTaskDispatch] = useReducer(
     completedTaskReducer,
     []
   );
   const date = new Date();
-  const storedTasks = localStorage.getItem("tasks");
-  const storedCompletedTasks = localStorage.getItem("completedTasks");
 
   const formattedDate = date.toLocaleDateString("pt-BR", {
     weekday: "long",
@@ -89,18 +89,23 @@ export default function Home() {
     formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 
   useEffect(() => {
-    if (storedTasks) {
-      dispatch({
-        type: "setTasks",
-        task: JSON.parse(storedTasks!),
-      });
-    }
+    if (typeof window !== "undefined") {
+      const storedTasks = localStorage.getItem("tasks");
+      const storedCompletedTasks = localStorage.getItem("completedTasks");
 
-    if (storedCompletedTasks) {
-      completedTaskDispatch({
-        type: "setTasks",
-        task: JSON.parse(storedCompletedTasks!),
-      });
+      if (storedTasks) {
+        dispatch({
+          type: "setTasks",
+          task: JSON.parse(storedTasks!),
+        });
+      }
+
+      if (storedCompletedTasks) {
+        completedTaskDispatch({
+          type: "setTasks",
+          task: JSON.parse(storedCompletedTasks!),
+        });
+      }
     }
   }, []);
 
