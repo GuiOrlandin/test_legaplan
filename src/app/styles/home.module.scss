@@ -1,3 +1,9 @@
+.homePageContainer {
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -8,9 +14,23 @@
 
   h1 {
     font-size: 1.5rem;
+    font-weight: 00;
   }
 
   span {
-    color: #666666;
+    background: linear-gradient(to right, #000000 0%, #666666 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: 400;
   }
+}
+
+.cardContainer {
+  width: 28.125rem;
+  padding: 2rem; //editar
+  border: 1px solid #eaecf0;
+  margin-top: 1.75rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
