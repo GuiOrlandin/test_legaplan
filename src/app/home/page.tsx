@@ -85,6 +85,9 @@ export default function Home() {
     day: "2-digit",
   });
 
+  const formattedDateWithUppercaseDay =
+    formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+
   useEffect(() => {
     if (storedTasks) {
       dispatch({
@@ -153,7 +156,7 @@ export default function Home() {
         <Image src={logoImage} alt="logo image" />
 
         <h1>Bem-vindo de volta, Marcus</h1>
-        <span>{formattedDate}</span>
+        <span>{formattedDateWithUppercaseDay}</span>
       </header>
 
       <div className={styles.cardContainer}>

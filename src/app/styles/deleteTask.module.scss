@@ -1,3 +1,9 @@
+$gradient-background-red: linear-gradient(
+  90deg,
+  rgba(211, 7, 7, 1) 0%,
+  rgba(240, 83, 83, 1) 100%
+);
+
 @mixin formattedButton($background, $color) {
   padding: 1rem 3.9375rem;
   border: none;
@@ -46,7 +52,7 @@
 
     div:first-of-type {
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
       gap: 1rem;
       margin-top: 2rem;
     }
@@ -72,9 +78,6 @@
     @include formattedButton(#e7eefb, #000000);
   }
   button:last-child {
-    @include formattedButton(
-      linear-gradient(to right, #d30707 0%, #d30707 10%, #f05353 100%),
-      #ffffff
-    );
+    @include formattedButton($gradient-background-red, #ffffff);
   }
 }

@@ -1,3 +1,14 @@
+$gradient-background-blue: linear-gradient(
+  90deg,
+  rgba(7, 150, 211, 1) 0%,
+  rgba(83, 192, 240, 1) 100%
+);
+$gradient-background-gray: linear-gradient(
+  90deg,
+  rgba(0, 0, 0, 1) 0%,
+  rgba(102, 102, 102, 1) 100%
+);
+
 .homePageContainer {
   display: flex;
   flex-direction: column;
@@ -13,12 +24,7 @@
     margin-right: auto;
     border-radius: 8px;
     border: none;
-    background: linear-gradient(
-      to right,
-      #0796d3 0%,
-      #53c0f0 70%,
-      #53c0f0 100%
-    );
+    background: $gradient-background-blue;
     color: white;
     padding: 1rem 10.1rem;
 
@@ -51,10 +57,9 @@
   }
 
   span {
-    background: linear-gradient(to right, #000000 0%, #666666 100%);
+    background: $gradient-background-gray;
     -webkit-background-clip: text;
     color: transparent;
-    font-weight: 400;
   }
 
   @media (max-width: 850px) {
@@ -83,10 +88,15 @@
   margin-right: auto;
 
   p {
-    color: #666666;
+    background: $gradient-background-gray;
+    -webkit-background-clip: text;
+    color: transparent;
   }
 
   h2 {
+    background: $gradient-background-gray;
+    -webkit-background-clip: text;
+    color: transparent;
     font-weight: 500;
   }
 
