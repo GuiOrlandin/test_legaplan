@@ -4,8 +4,8 @@ import styles from "@/app/styles/task.module.scss";
 import trashIcon from "../../public/trashIcon.svg";
 import Image from "next/image";
 import { useState } from "react";
-import { Task } from "../home/page";
 import DeleteTask from "./deleteTask";
+import { Task } from "@/app/home/page";
 
 interface TaskProps {
   removeTask: (task: Task) => void;
