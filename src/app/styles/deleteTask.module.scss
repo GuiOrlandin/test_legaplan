@@ -1,0 +1,59 @@
+@mixin formattedButton($background, $color) {
+  padding: 1rem 3.9375rem;
+  border: none;
+  border-radius: 8px;
+  background: $background;
+  color: $color;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+}
+
+.deleteTaskContainer {
+  display: flex;
+  text-align: start;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  h1 {
+    display: flex;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+  }
+
+  p {
+    display: flex;
+    margin-bottom: 0.5rem;
+  }
+
+  div:first-of-type {
+    display: flex;
+    gap: 1rem;
+  }
+
+  button:first-of-type {
+    @include formattedButton(#e7eefb, #000000);
+  }
+  button:last-child {
+    @include formattedButton(
+      linear-gradient(to right, #d30707 0%, #d30707 10%, #f05353 100%),
+      #ffffff
+    );
+  }
+}

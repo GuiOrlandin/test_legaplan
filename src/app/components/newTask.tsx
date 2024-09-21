@@ -15,7 +15,8 @@ export default function NewTask({
   const [task, setTask] = useState<string>("");
 
   function handleAddTask() {
-    setTask(task);
+    addTask(task);
+    setTask("");
     toggleModal();
   }
 

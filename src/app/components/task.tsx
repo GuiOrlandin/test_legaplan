@@ -4,31 +4,36 @@ import styles from "@/app/styles/task.module.scss";
 import trashIcon from "../../public/trashIcon.svg";
 import Image from "next/image";
 import { useState } from "react";
-import NewTask from "./newTask";
+import { Task } from "../home/page";
+import DeleteTask from "./deleteTask";
 
 interface TaskProps {
-  addTask: (task: string) => void;
-  removeTask: (task: string) => void;
-  taskContent: string;
+  removeTask: (task: Task) => void;
+  task: Task;
+  toggleComplete?: (task: Task) => void;
 }
 
-export default function Task({ addTask, taskContent, removeTask }: TaskProps) {
+export default function Task({ task, removeTask, toggleComplete }: TaskProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <div className={styles.taskContainer}>
       <div>
-        <input id="taskCheckbox" type="checkbox" />
-        <label htmlFor="taskCheckbox">{taskContent}</label>
+        <input
+          id={task.id}
+          type="checkbox"
+          checked={task.completed}
+          onChange={() => toggleComplete!(task)}
+        />
+        <label htmlFor={task.id}>{task.name}</label>
       </div>
 
-      <Image src={trashIcon} alt="trash icon" onClick={() => setIsOpen(true)} />
-
-      <NewTask
+      <DeleteTask
         isOpen={isOpen}
-        toggleModal={() => setIsOpen(!isOpen)}
-        addTask={addTask}
+        removeTask={() => removeTask(task)}
+        toggleModal={() => setIsOpen(false)}
       />
+      <Image src={trashIcon} alt="trash icon" onClick={() => setIsOpen(true)} />
     </div>
   );
 }
